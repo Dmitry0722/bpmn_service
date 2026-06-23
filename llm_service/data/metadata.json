@@ -1,0 +1,5 @@
+{
+  "name": "BPMN Architect AI",
+  "description": "An MVP tool that converts technical requirements (TZ) into visual BPMN diagrams using Gemini Flash.",
+  "requestFramePermissions": []
+}

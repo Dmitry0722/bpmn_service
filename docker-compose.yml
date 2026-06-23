@@ -1,0 +1,114 @@
+version: '3.8'
+services:
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+
+
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      POSTGRES_USER:  ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+
+  fastapi:
+      build: .
+      container_name: fastapi
+      command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+      ports:
+        - "8000:8000"
+      environment:
+        DATABASE_URL:  ${DATABASE_URL}
+        RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+        WATCHFILES_IGNORE_PATTERNS: /app/frontend/*:/app/.venv/*
+      depends_on:
+        rabbitmq:
+          condition: service_healthy
+        postgres:
+          condition: service_healthy
+      volumes:
+        - .:/app           # для автоматической перезагрузки при изменении кода
+      networks:
+        - app-network
+
+  worker:
+    build: .
+    container_name: worker
+    command: faststream run app.workers.get_llm_worker:app
+    environment:
+      DATABASE_URL:  ${DATABASE_URL}
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    volumes:
+      - .:/app
+    networks:
+      - app-network
+
+  frontend:
+    image: node:18-slim
+    container_name: frontend
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    command: sh -c "npm install && npm start"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - NODE_OPTIONS=--max-old-space-size=1024
+      - GENERATE_SOURCEMAP=false
+    networks:
+      - app-network
+
+  llm_service:
+    build: ./llm_service
+    container_name: llm_service
+    ports:
+      - "8001:8000"
+    environment:
+      - DISABLE_POSTHOG=1
+    networks:
+      - app-network
+    restart: unless-stopped
+
+
+# Тома для сохранения данных PostgreSQL
+volumes:
+  pgdata:
+
+# Сеть для взаимодействия контейнеров
+networks:
+  app-network:
+    driver: bridge

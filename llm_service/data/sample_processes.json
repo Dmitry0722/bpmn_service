@@ -1,0 +1,312 @@
+[
+  {
+    "title": "BPMN правило: Start Event",
+    "description": "Start Event обозначает точку начала процесса. У процесса есть хотя бы один Start Event и от него должен выходить Sequence Flow.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: End Event",
+    "description": "End Event обозначает завершение ветки процесса. Каждая логическая ветка после gateway должна приводить к End Event или сливаться в общий поток.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Sequence Flow",
+    "description": "Sequence Flow показывает порядок выполнения элементов внутри одного пула. Он соединяет события, задачи и шлюзы.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Message Flow",
+    "description": "Message Flow показывает обмен сообщениями между пулами. Его нельзя использовать как обычную последовательность шагов внутри одного пула.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Task",
+    "description": "Task — атомарная деятельность. Хорошая практика: имя задачи начинается с глагола: Проверить, Сформировать, Отправить.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Subprocess",
+    "description": "Subprocess используют, когда группа шагов повторяется или слишком детальна для верхнего уровня. У подпроцесса должны быть понятные вход/выход.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Pool",
+    "description": "Pool отражает участника или систему. Внутри пула размещают элементы процесса, относящиеся к этому участнику.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Lane",
+    "description": "Lane — дорожка внутри пула для ролей/подразделений. Lane повышает читаемость ответственности.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Data Object",
+    "description": "Data Object показывает документ или данные (заявка, счет, договор), которые используются или создаются на шаге.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Data Store",
+    "description": "Data Store — долговременное хранилище (реестр, база, архив), используемое для чтения/записи данных.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: User Task",
+    "description": "User Task — действие человека в интерфейсе системы: Заполнить заявку в 1С.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Manual Task",
+    "description": "Manual Task — действие человека вне ИС: Подписать бумажный документ.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Service Task",
+    "description": "Service Task — автоматическая операция системы: Сформировать платежное поручение автоматически.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Script Task",
+    "description": "Script Task — выполнение скрипта/процедуры внутри системы.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Send Task",
+    "description": "Send Task отправляет сообщение, Receive Task ожидает сообщение. Полезно для ожидания ответа/подтверждения.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Exclusive Gateway (XOR) означает выбор ровно одной ветки по условию",
+    "description": "Exclusive Gateway (XOR) означает выбор ровно одной ветки по условию. Желательно иметь один default-путь.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Parallel Gateway (AND)",
+    "description": "Parallel Gateway (AND) запускает ветки параллельно и используется для синхронизации. После AND-split часто нужен AND-join.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Inclusive Gateway (OR)",
+    "description": "Inclusive Gateway (OR) может запускать одну или несколько веток и требует явного понимания синхронизации.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Event-based Gateway",
+    "description": "Event-based Gateway выбирает ветку в зависимости от события: сообщение или таймер.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Gateway",
+    "description": "Gateway должен отражать бизнес-правило, а не UI-выбор. Условия должны быть однозначными.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: После gateway нельзя оставлять висячие ветки: каждая ветка должна либо слиться о",
+    "description": "После gateway нельзя оставлять висячие ветки: каждая ветка должна либо слиться обратно, либо завершиться End Event.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: XOR-ветки обычно сливаются обратно через простой merge без условий",
+    "description": "XOR-ветки обычно сливаются обратно через простой merge без условий.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Если использован AND-split, AND-join",
+    "description": "Если использован AND-split, AND-join должен ждать завершения всех необходимых параллельных веток.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Intermediate Message Event",
+    "description": "Intermediate Message Event используют, когда процесс ждёт входящее сообщение: ответ согласующего или подтверждение банка.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Intermediate Timer Event",
+    "description": "Intermediate Timer Event используют для ожидания по времени: таймаут согласования или напоминание.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Error Event",
+    "description": "Error Event используют для обработки ошибок: ошибка интеграции или отклонение банком.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Terminate End Event завершает весь процесс целиком; использовать осторожно, чаще",
+    "description": "Terminate End Event завершает весь процесс целиком; использовать осторожно, чаще нужен обычный End Event.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Compensation",
+    "description": "Compensation — механизм отката действий; применять только если реально нужен откат резервов/платежа.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Правило именования: задачи",
+    "description": "Имена задач: Глагол + объект. Пример: Проверить лимиты, Согласовать заявку, Сформировать реестр.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Правило именования: XOR Gateway",
+    "description": "Имена XOR-gateway лучше формулировать вопросом: Заявка согласована? Лимит соблюден?",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Правило именования: условия на ветках",
+    "description": "Условия на ветках должны быть короткими и однозначными: Да/Нет, Сумма > X, Документы полные.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Правило именования: Start/End события",
+    "description": "Start/End события лучше называть как факт/состояние: Появилась потребность, Платеж исполнен.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Правило детализации диаграммы",
+    "description": "На одном уровне диаграммы поддерживай единый уровень детализации, не смешивай микро- и макро-операции.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "BPMN правило: Sequence Flow",
+    "description": "Sequence Flow используется только внутри пула. Между внешними участниками (например банк) используйте Message Flow.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Правило моделирования: внешний банк",
+    "description": "Если банк внешний участник, его лучше показывать отдельным pool, а не lane внутри компании.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Правило моделирования: интеграция",
+    "description": "Интеграция должна быть Service Task + Message Flow, а не ручной шаг пользователя.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Правило моделирования: статус заявки",
+    "description": "Фиксация статуса заявки лучше выделять отдельной задачей в системе-источнике статуса.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Пример: модель статусов заявки",
+    "description": "Пример модели статусов заявки: Черновик → На согласовании → Согласовано → В оплате → Оплачено / Отклонено / На доработке.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Правило моделирования: возврат на доработку",
+    "description": "Возврат на доработку моделируй как ветку, ведущую к задаче Исправить/дополнить, и возвращающуюся к повторной отправке.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Правило моделирования: отказ",
+    "description": "Отказ моделируй как явную ветку, завершающуюся End Event, и уведомление инициатора.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Правило моделирования: повторная отправка",
+    "description": "При повторной отправке важна идемпотентность: уникальный ID заявки/платежа, чтобы избежать дублей.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Правило моделирования: проверки данных",
+    "description": "Проверки данных (документы, реквизиты, сумма) лучше выделять в отдельные задачи, а не прятать внутри gateway.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Правило моделирования: проверка лимитов",
+    "description": "Проверка лимитов должна иметь ясный исход: отклонить, запросить доп согласование или изменить лимит.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Правило моделирования: разделение обязанностей",
+    "description": "Разделение обязанностей: если нельзя и создавать, и утверждать одному лицу, показывай разные lanes/роли.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Правило моделирования: контроль сроков",
+    "description": "Контроль сроков: таймер + эскалация или напоминание оформляй отдельной веткой, если это важно.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Ошибка BPMN: диаграмма без Start или End часто означает незакрытый поток",
+    "description": "Ошибка: диаграмма без Start или End часто означает незакрытый поток.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Ошибка BPMN: XOR",
+    "description": "Ошибка: XOR-gateway без условий создаёт неоднозначность — добавь условия или default.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Ошибка BPMN: использование AND вместо XOR",
+    "description": "Ошибка: использование AND вместо XOR. AND — параллель, XOR — выбор.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Ошибка BPMN: смешение Message Flow и Sequence Flow между разными пулами",
+    "description": "Ошибка: смешение Message Flow и Sequence Flow между разными пулами.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Ошибка BPMN: слишком длинные задачи без выделения контрольных точек и условий",
+    "description": "Ошибка: слишком длинные задачи без выделения контрольных точек и условий.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Правило преобразования: у каждой задачи должна быть роль/система",
+    "description": "Правило: у каждой задачи должна быть роль/система. Если неясно — помечай как UNKNOWN и требуй уточнения.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Правило преобразования: слова если/иначе/в случае обычно превращаются в gateway или error path",
+    "description": "Правило: слова если/иначе/в случае обычно превращаются в gateway или error path.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Правило преобразования: фраза вернуть на доработку означает петлю назад, а не конец процесса",
+    "description": "Правило: фраза вернуть на доработку означает петлю назад, а не конец процесса.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Правило преобразования: завершение процесса должно быть явным состоянием или событием и заверш",
+    "description": "Правило: завершение процесса должно быть явным состоянием или событием и завершаться End Event.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "JSON-схема: Task",
+    "description": "JSON для Task: полезные поля id, name, type(user/service/manual), lane, inputs, outputs.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "JSON-схема: Gateway",
+    "description": "JSON для Gateway: поля id, name, type(exclusive/parallel), branches(условие→next), default_branch.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "JSON-схема: Edge",
+    "description": "JSON для Edge: поля from, to, condition(если есть), edge_type(sequence/message).",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "JSON-схема: обязательные start_event и end_events",
+    "description": "JSON должен иметь start_event и end_events (может быть несколько end для разных исходов).",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Валидация: у каждого node (кроме start/end) должен быть хотя бы один вх",
+    "description": "Валидация: у каждого node (кроме start/end) должен быть хотя бы один вход и один выход.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Валидация XOR: минимум 2 ветки",
+    "description": "Валидация XOR: минимум 2 ветки, условия на ветках или default.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Валидация loops: петля на доработку должна возвращаться к повторной отправке",
+    "description": "Валидация loops: петля на доработку должна возвращаться к повторной отправке, иначе будет бесконечная петля.",
+    "type": "bpmn_general"
+  },
+  {
+    "title": "Traceability: связь узлов с источником",
+    "description": "Traceability: полезно хранить ссылку на источник (doc_id/row/page) для каждой задачи/правила.",
+    "type": "bpmn_general"
+  }
+]

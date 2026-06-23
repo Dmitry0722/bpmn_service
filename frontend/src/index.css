@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #2ecc71;
+  --primary-light: #a3e4a3;
+  --primary-dark: #27ae60;
+  --secondary: #f39c12;
+  --secondary-light: #f1c40f;
+  --accent: #e67e22;
+  --background: #ffffff;
+  --surface: #f8f9fa;
+  --navbar-bg: #f39c12; /* Яркий оранжевый для шапки */
+  --navbar-dark: #e67e22; /* Для градиента или теней */
+  --text-primary: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --glass-background: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(46, 204, 113, 0.2);
+  --glass-shadow: 0 8px 32px 0 rgba(46, 204, 113, 0.1);
+  --gradient-primary: linear-gradient(135deg, #2ecc71, #f39c12);
+  --gradient-secondary: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--background);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');

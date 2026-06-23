@@ -1,0 +1,15 @@
+fastapi~=0.121.3
+uvicorn~=0.38.0
+sqlalchemy~=2.0.44
+aiosqlite
+docx2txt~=0.9
+textract~=1.6.4
+PyPDF2~=3.0.1
+dotenv~=0.9.9
+python-dotenv~=1.2.1
+pydantic~=2.12.5
+asyncpg~= 0.31.0
+python-multipart~=0.0.20
+faststream[rabbit]~=0.6.6
+faststream[cli]~=0.6.6
+httpx~=0.28.0

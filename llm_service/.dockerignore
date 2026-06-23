@@ -1,0 +1,11 @@
+venv/
+.venv/
+env/
+*.gguf
+*.bin
+models/
+chroma_db/
+__pycache__/
+*.pyc
+.git/
+.env
